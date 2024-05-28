@@ -1,8 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import userRoutes from './routes/userRoutes.js';
 import dotenv from 'dotenv';
+import userRoutes from './routes/userRoutes.js';
+import stickerRoutes from './routes/stickerRoutes.js'
 
 
 dotenv.config()
@@ -17,6 +18,7 @@ app.use(cors());
 
 // ROUTES
 app.use('/api/user', userRoutes);
+app.use('/api/stickers', stickerRoutes)
 
 mongoose.connect(DB_URL)
   .then(() => {
