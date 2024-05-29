@@ -1,12 +1,16 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import userRoutes from './routes/userRoutes.js';
+import express from 'express'
+import mongoose from 'mongoose'
+import cors from 'cors'
+import dotenv from 'dotenv'
+import userRoutes from './routes/userRoutes.js'
 import stickerRoutes from './routes/stickerRoutes.js'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-dotenv.config()
+dotenv.config({ path: path.resolve(__dirname, '../.env') })
 
 
 const app = express();

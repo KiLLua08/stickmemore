@@ -4,7 +4,7 @@ import sticker from '../assets/sticker.png';
 
 function Header() {
   return (
-    <nav className='flex flex-col sm:flex-row justify-between p-5 items-center bg-slate-900'>
+    <nav className='flex flex-col sm:flex-row justify-between p-8 items-center bg-slate-900 gap-10 '>
       <div className='logo'>
         <img src={sticker} alt="logo" className='w-20 rounded-full'/>
       </div>
