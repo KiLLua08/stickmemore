@@ -9,7 +9,7 @@ function Header() {
         <img src={sticker} alt="logo" className='w-20 rounded-full'/>
       </div>
       <div className='navigations'>
-        <ul className='flex flex-col sm:flex-row justify-center gap-5'>
+        <ul className='flex flex-col sm:flex-row justify-center gap-5 items-center'>
             <li className='cursor-pointer text-red-100 hover:text-white'><Link to='/'>WELCOME</Link></li>
             <li className='cursor-pointer text-red-100 hover:text-white'><Link to='/home'>HOME</Link></li>
             <li className='cursor-pointer text-red-100 hover:text-white'><Link to='/shop'>SHOP</Link></li>
