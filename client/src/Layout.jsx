@@ -17,7 +17,9 @@ import CartPage from './pages/Payement/CartPage';
 import CheckoutPage from './pages/Payement/CheckoutPage';
 import OrderConfirmationPage from './pages/Payement/OrderConfirmationPage';
 
+
 function Layout() {
+
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-r from-white to-blue-100">
     <Router>
