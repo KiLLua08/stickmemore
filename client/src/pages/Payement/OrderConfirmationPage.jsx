@@ -1,9 +1,7 @@
-// src/pages/OrderConfirmationPage.js
 import React from 'react';
 
 const OrderConfirmationPage = () => {
-  // This should come from order submission response
-  const order = {}; // Placeholder
+  const order = {};
 
   return (
     <div>

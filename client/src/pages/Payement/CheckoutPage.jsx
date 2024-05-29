@@ -1,4 +1,3 @@
-// src/pages/CheckoutPage.js
 import React, { useState } from 'react';
 
 const CheckoutPage = () => {
@@ -17,7 +16,7 @@ const CheckoutPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle order submission logic
+    // Logic missing
   };
 
   return (
