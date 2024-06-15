@@ -7,7 +7,7 @@ function Welcome() {
       <div className='text-6xl gradient-text text-center' style={{fontFamily: 'Agbalumo'}}>WELCOME TO STICKMEMORE</div>
       <div>
         <img src={sticker} alt="" className='rounded-3xl' />
-        <Link to="/home">Browse Stickers --</Link>
+        <Link to="/stickers">Browse Stickers --</Link>
       </div>
     </div>
   )
