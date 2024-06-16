@@ -1,9 +1,9 @@
-// Register.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import registerImage from '../../assets/hero.png'; // Add a suitable image to your assets
 
 const Register = () => {
   const navigate = useNavigate();
@@ -87,59 +87,62 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen w-full">
+    <div className="flex items-center justify-center w-full">
       <ToastContainer />
-      <div className="bg-transparent p-10 rounded-lg shadow-lg w-full max-w-sm border">
-        <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <input
-              className={`w-full px-4 py-3 border bg-transparent rounded-lg ${formErrors.username ? 'border-red-500' : 'border-gray-300'}`}
-              type="text"
-              name="username"
-              placeholder="Username"
-              value={formData.username}
-              onChange={handleChange}
-            />
-            {formErrors.username && <p className="text-red-500 text-xs mt-1">{formErrors.username}</p>}
-          </div>
-          <div>
-            <input
-              className={`w-full bg-transparent px-4 py-3 border rounded-lg ${formErrors.email ? 'border-red-500' : 'border-gray-300'}`}
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
-          </div>
-          <div>
-            <input
-              className={`w-full bg-transparent px-4 py-3 border rounded-lg ${formErrors.password ? 'border-red-500' : 'border-gray-300'}`}
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-            {formErrors.password && <p className="text-red-500 text-xs mt-1">{formErrors.password}</p>}
-          </div>
-          <div>
-            <input
-              className={`w-full bg-transparent px-4 py-3 border rounded-lg ${formErrors.confirmPassword ? 'border-red-500' : 'border-gray-300'}`}
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-            />
-            {formErrors.confirmPassword && <p className="text-red-500 text-xs mt-1">{formErrors.confirmPassword}</p>}
-          </div>
-          <button type="submit" className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-700">
-            Register
-          </button>
-        </form>
+      <div className="bg-white flex rounded-lg shadow-lg overflow-hidden w-full max-w-4xl">
+        <div className="hidden md:block w-1/2 bg-cover" style={{ backgroundImage: `url(${registerImage})` }}></div>
+        <div className="w-full md:w-1/2 p-8">
+          <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <input
+                className={`w-full px-4 py-3 border rounded-lg ${formErrors.username ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                type="text"
+                name="username"
+                placeholder="Username"
+                value={formData.username}
+                onChange={handleChange}
+              />
+              {formErrors.username && <p className="text-red-500 text-xs mt-1">{formErrors.username}</p>}
+            </div>
+            <div>
+              <input
+                className={`w-full px-4 py-3 border rounded-lg ${formErrors.email ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+              {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
+            </div>
+            <div>
+              <input
+                className={`w-full px-4 py-3 border rounded-lg ${formErrors.password ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+              />
+              {formErrors.password && <p className="text-red-500 text-xs mt-1">{formErrors.password}</p>}
+            </div>
+            <div>
+              <input
+                className={`w-full px-4 py-3 border rounded-lg ${formErrors.confirmPassword ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+              />
+              {formErrors.confirmPassword && <p className="text-red-500 text-xs mt-1">{formErrors.confirmPassword}</p>}
+            </div>
+            <button type="submit" className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+              Register
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

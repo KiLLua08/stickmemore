@@ -8,21 +8,23 @@ import { motion } from 'framer-motion';
 const Stickers = () => {
   const [stickers, setStickers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setTimeout(() => {
-      axios.get('http://localhost:4000/api/stickers/allStickers')
-        .then(response => {
-          setStickers(response.data);
-          setLoading(false);
-        })
-        .catch(error => {
-          console.error(error);
-          setLoading(false);
-        });
+    axios.get('http://localhost:4000/api/stickers/allStickers')
+      .then(response => {
+        setStickers(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+        setError('Failed to load stickers. Please try again later.');
+        setLoading(false);
+      });
     }, 2000);
   }, []);
-
+  
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
