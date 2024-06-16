@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import loginImage from '../../assets/hero.png';
+import { DNA } from 'react-loader-spinner';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,9 +31,9 @@ const Login = () => {
       Object.values(errors).forEach((error) => toast.error(error));
       return;
     }
-
+    setIsLoading(true)
     try {
-      const response = await axios.post('http://localhost:4000/api/user/login', formData);
+      await axios.post('http://localhost:4000/api/user/login', formData);
       toast.success('You logged in successfully!', {
         position: "top-right",
         autoClose: 3000,
@@ -53,6 +55,8 @@ const Login = () => {
         draggable: true,
         progress: undefined,
       });
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -102,8 +106,16 @@ const Login = () => {
               />
               {formErrors.password && <p className="text-red-500 text-xs mt-1">{formErrors.password}</p>}
             </div>
-            <button type="submit" className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition duration-300">
-              Login
+            <button type="submit" className="w-full py-3 flex justify-center align-center bg-blue-800 text-white rounded-lg hover:bg-blue-900 transition duration-300">
+              {isLoading ?
+              <DNA
+                visible={true}
+                height="50"
+                width="50"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+              /> : 'Login'}
             </button>
           </form>
         </div>

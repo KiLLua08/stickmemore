@@ -6,11 +6,11 @@ function Welcome() {
   return (
     <div className="welcome-page">
       {/* Hero Section */}
-      <section className="hero bg-cover bg-center h-screen text-rose-950 flex flex-col justify-center items-center" style={{ backgroundImage: `url(${heroImage})` }}>
+      <section className="hero bg-cover bg-center h-screen text-cyan-950 flex flex-col justify-center items-center" style={{ backgroundImage: `url(${heroImage})` }}>
         <div className='text-center p-5 bg-white rounded-xl'>
         <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to StickMeMore</h1>
         <p className="text-lg md:text-2xl mb-8">Discover unique and custom stickers for every occasion.</p>
-        <Link to="/shop" className="px-6 py-3 bg-red-500 text-white rounded-full text-lg font-semibold hover:bg-red-600 transition duration-300">Shop Now</Link>
+        <Link to="/shop" className="px-6 py-3 bg-blue-800 text-white rounded-full text-lg font-semibold hover:bg-blue-900 transition duration-300">Shop Now</Link>
         </div>
       </section>
 

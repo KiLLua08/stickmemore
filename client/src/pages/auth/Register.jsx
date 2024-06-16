@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import registerImage from '../../assets/hero.png'; // Add a suitable image to your assets
+import { DNA, Puff } from 'react-loader-spinner';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Register = () => {
   });
 
   const [formErrors, setFormErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +33,7 @@ const Register = () => {
       Object.values(errors).forEach((error) => toast.error(error));
       return;
     }
-
+    setIsLoading(true);
     try {
       await axios.post('http://localhost:4000/api/user/register', formData);
       toast.success('User registered successfully!', {
@@ -43,7 +45,7 @@ const Register = () => {
         draggable: true,
         progress: undefined,
       });
-      setTimeout(() => navigate('/login'), 3000); // Delay navigation to ensure the toast is visible
+      setTimeout(() => navigate('/login'), 2000);
     } catch (error) {
       console.error(error.response.data);
       toast.error('Failed to register. Please check your inputs.', {
@@ -55,6 +57,8 @@ const Register = () => {
         draggable: true,
         progress: undefined,
       });
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -73,8 +77,8 @@ const Register = () => {
 
     if (!data.password) {
       errors.password = 'Password is required';
-    } else if (data.password.length < 6) {
-      errors.password = 'Password must have at least 6 characters';
+    } else if (data.password.length < 8) {
+      errors.password = 'Password must have at least 8 characters';
     }
 
     if (!data.confirmPassword) {
@@ -138,8 +142,26 @@ const Register = () => {
               />
               {formErrors.confirmPassword && <p className="text-red-500 text-xs mt-1">{formErrors.confirmPassword}</p>}
             </div>
-            <button type="submit" className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition duration-300">
-              Register
+            <button type="submit" className="w-full py-3 flex justify-center align-center bg-blue-800 text-white rounded-lg hover:bg-blue-900 transition duration-300">
+            {isLoading ?
+            // <Puff
+            // visible={true}
+            // height="80"
+            // width="80"
+            // color="#05eaff"
+            // ariaLabel="puff-loading"
+            // wrapperStyle={{}}
+            // wrapperClass=""
+            // />
+              <DNA
+                visible={true}
+                height="50"
+                width="50"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+              /> : 'Register'
+              }
             </button>
           </form>
         </div>

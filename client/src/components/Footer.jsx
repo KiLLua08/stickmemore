@@ -4,6 +4,7 @@ import fb from '/facebook.png';
 import gamer from '/gamer.png';
 import gmail from '/gmail.png';
 import instagram from '/instagram.png';
+import { PiPhoneCallFill } from "react-icons/pi";
 
 function Footer() {
   return (
@@ -15,7 +16,7 @@ function Footer() {
         </div>
         <div className="flex flex-col items-center md:items-start gap-2">
           <span className="text-lg font-semibold">Contact Us</span>
-          <span>Phone: 94293069</span>
+          <span>Phone : <h1 className='font-extrabold text-5xl text-cyan-300 flex gap-5'><PiPhoneCallFill />20 375 849</h1></span>
         </div>
         <div className="flex flex-col md:flex-row gap-4 items-center">
           <div className="flex flex-col md:flex-row items-center gap-4">
