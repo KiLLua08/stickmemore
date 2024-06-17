@@ -1,15 +1,20 @@
 import React from 'react';
 import { FaSheetPlastic } from 'react-icons/fa6';
 import { MdCategory } from 'react-icons/md';
-import { IoPricetagsOutline } from 'react-icons/io5';
-import {stickersUrl} from '../assets/stickersUrl.js'
-import { IoPricetags } from "react-icons/io5";
+import { IoPricetagsOutline, IoPricetags } from 'react-icons/io5';
+import { motion } from 'framer-motion';
+import { stickersUrl } from '../assets/stickersUrl.js';
 
 function Card({ imageUrl, price, category, type }) {
   return (
-    <a href="#" className="block rounded-lg p-4 shadow-sm shadow-indigo-500">
+    <motion.div
+      className="block rounded-lg p-4 shadow-sm shadow-indigo-500 cursor-pointer hover:scale-105 transition duration-300 active:scale-95"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <img
-        alt={category}
+        alt='Sticker'
         src={stickersUrl[0].url}
         className="h-56 w-full rounded-md object-cover"
       />
@@ -41,7 +46,7 @@ function Card({ imageUrl, price, category, type }) {
           </div>
         </div>
       </div>
-    </a>
+    </motion.div>
   );
 }
 
