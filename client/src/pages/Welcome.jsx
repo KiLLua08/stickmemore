@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import heroImage from '../assets/shop.png';
+import Reviews from '../components/Reviews';
 
 function Welcome() {
   return (
@@ -36,26 +37,7 @@ function Welcome() {
       </section>
 
       {/* Testimonials */}
-      <section className="testimonials py-16">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">What Our Customers Say</h2>
-          <div className="flex flex-wrap justify-center gap-10">
-            <div className="testimonial-box p-6 bg-white shadow-lg rounded-lg w-full md:w-1/3">
-              <p className="mb-4">"Amazing quality and fantastic service. Will definitely order again!"</p>
-              <h3 className="text-xl font-semibold">* Rayen Yakoubi</h3>
-            </div>
-            <div className="testimonial-box p-6 bg-white shadow-lg rounded-lg w-full md:w-1/3">
-              <p className="mb-4">"Love the custom designs! They were exactly what I wanted."</p>
-              <h3 className="text-xl font-semibold">* Raslen Yakoubi</h3>
-            </div>
-            <div className="testimonial-box p-6 bg-white shadow-lg rounded-lg w-full md:w-1/3">
-              <p className="mb-4">"Fast shipping and great customer service. Highly recommend!"</p>
-              <h3 className="text-xl font-semibold">* Med Ramez Yakoubi</h3>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <Reviews />
       {/* New Arrivals/Best Sellers */}
       <section className="new-arrivals py-16 bg-gray-100">
         <div className="container mx-auto text-center">

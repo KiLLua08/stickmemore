@@ -31,9 +31,9 @@ export const getAllStickers = async (req, res) => {
 
  export const addSticker = async (req, res) => {
     const sticker = new Sticker({
-      name: req.body.name,
+      category: req.body.category,
       price: req.body.price,
-      description: req.body.description,
+      type: req.body.type,
       imageUrl: req.body.imageUrl,
     });
   

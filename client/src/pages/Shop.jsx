@@ -7,15 +7,14 @@ const Shop = () => {
   const [filteredStickers, setFilteredStickers] = useState([]);
   const [filters, setFilters] = useState({
     category: '',
+    price: '',
     type: '',
-    priceRange: '',
   });
 
   useEffect(() => {
     const fetchStickers = async () => {
       try {
         const response = await axios.get('http://localhost:4000/api/stickers/allStickers');
-        console.log(response)
         setStickers(response.data);
         setFilteredStickers(response.data);
       } catch (error) {
@@ -37,8 +36,8 @@ const Shop = () => {
       filtered = filtered.filter(sticker => sticker.type === filters.type);
     }
 
-    if (filters.priceRange) {
-      const [min, max] = filters.priceRange.split('-').map(Number);
+    if (filters.price) {
+      const [min, max] = filters.price.split('-').map(Number);
       filtered = filtered.filter(sticker => sticker.price >= min && sticker.price <= max);
     }
 
@@ -64,8 +63,9 @@ const Shop = () => {
           >
             <option value="">All</option>
             <option value="anime">Anime</option>
-            <option value="nature">Nature</option>
-            <option value="tech">Tech</option>
+            <option value="sport">Sport</option>
+            <option value="quotes">Quotes</option>
+            <option value="gaming">Gaming</option>
           </select>
         </div>
         <div className="mb-4">
@@ -79,20 +79,21 @@ const Shop = () => {
             <option value="">All</option>
             <option value="vinyl">Vinyl</option>
             <option value="paper">Paper</option>
+            <option value="wood">Wood</option>
           </select>
         </div>
         <div>
           <label className="block mb-2">Price Range</label>
           <select
-            name="priceRange"
-            value={filters.priceRange}
+            name="price"
+            value={filters.price}
             onChange={handleFilterChange}
             className="w-full p-2 border rounded"
           >
             <option value="">All</option>
-            <option value="0-5">0 - 5 dt</option>
-            <option value="5-10">5 - 10 dt</option>
-            <option value="10-20">10 - 20 dt</option>
+            <option value="0-88">0 - 88 dt</option>
+            <option value="0.9-1">0.9 - 1.4 dt</option>
+            <option value="1.5-2">1.5 - 2 dt</option>
           </select>
         </div>
       </div>
@@ -101,7 +102,13 @@ const Shop = () => {
         <h2 className="text-xl font-bold mb-4">Stickers</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredStickers.map(sticker => (
-            <Card image={sticker.imageUrl} />
+            <Card
+              key={sticker.id}
+              imageUrl={sticker.image}
+              price={sticker.price}
+              category={sticker.category}
+              type={sticker.type}
+            />
           ))}
         </div>
       </div>

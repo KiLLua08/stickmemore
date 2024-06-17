@@ -144,23 +144,15 @@ const Register = () => {
             </div>
             <button type="submit" className="w-full py-3 flex justify-center align-center bg-blue-800 text-white rounded-lg hover:bg-blue-900 transition duration-300">
             {isLoading ?
-            // <Puff
-            // visible={true}
-            // height="80"
-            // width="80"
-            // color="#05eaff"
-            // ariaLabel="puff-loading"
-            // wrapperStyle={{}}
-            // wrapperClass=""
-            // />
-              <DNA
-                visible={true}
-                height="50"
-                width="50"
-                ariaLabel="dna-loading"
-                wrapperStyle={{}}
-                wrapperClass="dna-wrapper"
-              /> : 'Register'
+            <Puff
+            visible={true}
+            height="30"
+            width="30"
+            color="#05eaff"
+            ariaLabel="puff-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            /> : 'Register'
               }
             </button>
           </form>

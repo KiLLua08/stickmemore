@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const StickerSchema = new mongoose.Schema({
-  name: {
+  category: {
     type: String,
     required: true
   },
@@ -9,7 +9,7 @@ const StickerSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  description: {
+  type: {
     type: String,
   },
   imageUrl: {

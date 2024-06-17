@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import loginImage from '../../assets/hero.png';
-import { DNA } from 'react-loader-spinner';
+import { DNA, InfinitySpin, Oval, MutatingDots } from 'react-loader-spinner';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -108,14 +108,15 @@ const Login = () => {
             </div>
             <button type="submit" className="w-full py-3 flex justify-center align-center bg-blue-800 text-white rounded-lg hover:bg-blue-900 transition duration-300">
               {isLoading ?
-              <DNA
-                visible={true}
-                height="50"
-                width="50"
-                ariaLabel="dna-loading"
-                wrapperStyle={{}}
-                wrapperClass="dna-wrapper"
-              /> : 'Login'}
+                         <Puff
+                         visible={true}
+                         height="30"
+                         width="30"
+                         color="#05eaff"
+                         ariaLabel="puff-loading"
+                         wrapperStyle={{}}
+                         wrapperClass=""
+                         /> : 'Login'}
             </button>
           </form>
         </div>
