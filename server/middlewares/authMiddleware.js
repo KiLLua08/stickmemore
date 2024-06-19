@@ -1,20 +1,32 @@
 import jwt from 'jsonwebtoken';
+import { userModel } from '../models/User.js';
 
-const authMiddleware = (req, res, next) => {
-  const authHeader = req.header('Authorization');
-  const token = authHeader && authHeader.split(' ')[1];
+export const requireAuth = (req, res, next) => {
+    const token = req.header('Authorization')?.replace('Bearer ', '');
 
-  if (!token) {
-    return res.status(401).json({ message: 'Authorization denied' });
-  }
+    if (!token) {
+        return res.status(401).json({ message: 'Access denied. No token provided.' });
+    }
 
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded.userId;
-    next();
-  } catch (err) {
-    res.status(401).json({ message: 'Token is not valid' });
-  }
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = decoded.userId;
+        next();
+    } catch (error) {
+        res.status(400).json({ message: 'Invalid token.' });
+    }
 };
 
-export default authMiddleware;
+export const requireAdmin = async (req, res, next) => {
+    try {
+        const user = await userModel.findById(req.user);
+
+        if (!user || !user.isAdmin) {
+            return res.status(403).json({ message: 'Access denied. Admins only.' });
+        }
+
+        next();
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error.' });
+    }
+};

@@ -52,11 +52,13 @@ const Shop = () => {
 
   return (
     <div className='flex flex-col justify-center items-center w-full'>
-      <div className='p-2 text-center font-bold text-2xl mb-10 w-[200px] border rounded-lg'>
+      <div className='text-emerald-500 p-2 text-center font-bold text-2xl mb-10 w-[200px] border rounded-lg shadow-sm shadow-blue-950'
+        style={{fontFamily : 'agbalumo'}}
+      >
         Shop
       </div>
       <div className="flex flex-col border md:flex-row min-h-screen w-full">
-        <div className="w-full md:w-1/4 p-4 bg-gray-100">
+        <div className="w-full md:w-1/4 p-4 bg-gray-200">
           <h2 className="text-xl font-bold mb-4">Filters</h2>
           <div className="mb-4">
             <label className="block mb-2">Category</label>

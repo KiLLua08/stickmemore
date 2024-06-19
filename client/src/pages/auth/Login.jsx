@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import loginImage from '../../assets/hero.png';
-import { DNA, InfinitySpin, Oval, MutatingDots } from 'react-loader-spinner';
+import { Puff } from 'react-loader-spinner';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,9 +31,14 @@ const Login = () => {
       Object.values(errors).forEach((error) => toast.error(error));
       return;
     }
-    setIsLoading(true)
+
+    setIsLoading(true);
+
     try {
-      await axios.post('http://localhost:4000/api/user/login', formData);
+      const response = await axios.post('http://localhost:4000/api/user/login', formData);
+      const { token } = response.data;
+
+      localStorage.setItem('token', token);
       toast.success('You logged in successfully!', {
         position: "top-right",
         autoClose: 3000,
@@ -43,9 +48,10 @@ const Login = () => {
         draggable: true,
         progress: undefined,
       });
+
       setTimeout(() => navigate('/home'), 3000);
     } catch (error) {
-      console.error(error.response.data.error);
+      console.error('Login error:', error.response ? error.response.data.error : error.message);
       toast.error('Invalid email or password. Please try again.', {
         position: "top-right",
         autoClose: 3000,
@@ -56,7 +62,7 @@ const Login = () => {
         progress: undefined,
       });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
@@ -108,15 +114,15 @@ const Login = () => {
             </div>
             <button type="submit" className="w-full py-3 flex justify-center align-center bg-blue-800 text-white rounded-lg hover:bg-blue-900 transition duration-300">
               {isLoading ?
-                         <Puff
-                         visible={true}
-                         height="30"
-                         width="30"
-                         color="#05eaff"
-                         ariaLabel="puff-loading"
-                         wrapperStyle={{}}
-                         wrapperClass=""
-                         /> : 'Login'}
+                <Puff
+                  visible={true}
+                  height="30"
+                  width="30"
+                  color="#05eaff"
+                  ariaLabel="puff-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                /> : 'Login'}
             </button>
           </form>
         </div>

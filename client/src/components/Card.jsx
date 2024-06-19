@@ -8,10 +8,10 @@ import { stickersUrl } from '../assets/stickersUrl.js';
 function Card({ imageUrl, price, category, type }) {
   return (
     <motion.div
-      className="block rounded-lg p-4 shadow-sm shadow-indigo-500 cursor-pointer hover:scale-105 transition duration-300 active:scale-95"
+      className="block rounded-lg p-4 shadow-sm shadow-indigo-500 cursor-pointer transition duration-300 hover:scale-105 active:scale-95"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 2 }}
     >
       <img
         alt='Sticker'

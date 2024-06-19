@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import sticker from '../assets/sticker.png';
 import { useLocation } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
 
 function Header() {
-  const loc = useLocation()
-  const locations = ['/login', '/register']
+  const loc = useLocation();
+  const locations = ['/login', '/register'];
+  const { user } = useContext(AuthContext);
+
   return (
     <nav className="flex flex-col font-bold md:flex-row justify-between items-center bg-slate-900 p-4 md:px-8 shadow-lg font-roboto gap-20">
       <div className="flex items-center mb-4 md:mb-0">
@@ -36,19 +39,25 @@ function Header() {
         />
       </div>
       <div className="flex items-center gap-5">
-        <Link
-          className="cursor-pointer text-red-100 hover:text-white transition duration-300"
-          to="/register"
-        >
-          Register
-        </Link>
-        <div className="h-6 border-l border-red-100"></div>
-        <Link
-          className="cursor-pointer text-red-100 hover:text-white transition duration-300"
-          to="/login"
-        >
-          Login
-        </Link>
+        {user ? (
+          <span className="text-white">Welcome, {user.name}</span>
+        ) : (
+          <>
+            <Link
+              className="cursor-pointer text-red-100 hover:text-white transition duration-300"
+              to="/register"
+            >
+              Register
+            </Link>
+            <div className="h-6 border-l border-red-100"></div>
+            <Link
+              className="cursor-pointer text-red-100 hover:text-white transition duration-300"
+              to="/login"
+            >
+              Login
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );
