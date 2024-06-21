@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaSheetPlastic } from 'react-icons/fa6';
 import { MdCategory } from 'react-icons/md';
 import { IoPricetagsOutline, IoPricetags } from 'react-icons/io5';
 import { motion } from 'framer-motion';
 import { stickersUrl } from '../assets/stickersUrl.js';
+import { useNavigate } from 'react-router-dom';
 
-function Card({ imageUrl, price, category, type }) {
+function Card({ _id, imageUrl, price, category, type }) {
+  const navigate = useNavigate()
+  const handleClick = () => {
+    navigate(`/stickers/:${_id}`)
+  }
+
   return (
     <motion.div
       className="block rounded-lg p-4 shadow-sm shadow-indigo-500 cursor-pointer transition duration-300 hover:scale-105 active:scale-95"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 2 }}
+      onClick={handleClick}
     >
       <img
         alt='Sticker'
