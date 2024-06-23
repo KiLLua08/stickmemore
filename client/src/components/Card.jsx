@@ -6,10 +6,11 @@ import { motion } from 'framer-motion';
 import { stickersUrl } from '../assets/stickersUrl.js';
 import { useNavigate } from 'react-router-dom';
 
-function Card({ _id, imageUrl, price, category, type }) {
+function Card({ id, imageUrl, price, category, type }) {
   const navigate = useNavigate()
+  console.log(id)
   const handleClick = () => {
-    navigate(`/stickers/:${_id}`)
+    navigate(`/stickers/${id}`)
   }
 
   return (
@@ -20,6 +21,7 @@ function Card({ _id, imageUrl, price, category, type }) {
       transition={{ duration: 2 }}
       onClick={handleClick}
     >
+      <h1>{id}</h1>
       <img
         alt='Sticker'
         src={stickersUrl[0].url}

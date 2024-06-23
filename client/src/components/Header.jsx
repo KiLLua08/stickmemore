@@ -19,7 +19,6 @@ function Header() {
   };
 
   const locations = ['/login', '/register'];
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };

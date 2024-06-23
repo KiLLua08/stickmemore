@@ -118,6 +118,7 @@ const Shop = () => {
                   transition={{ delay: index * 0.3 }}
                 >
                   <Card
+                    id={sticker._id}
                     imageUrl={sticker.image}
                     price={sticker.price}
                     category={sticker.category}
