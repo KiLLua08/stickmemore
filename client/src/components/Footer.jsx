@@ -8,7 +8,7 @@ import { PiPhoneCallFill } from "react-icons/pi";
 
 function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-8 px-3">
+    <footer className="bg-dark_blue text-white py-8 px-3">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex flex-col items-center md:items-start">
           <Link to="/" className="text-2xl font-bold mb-2">StickMeMore</Link>
