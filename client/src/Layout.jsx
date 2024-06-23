@@ -20,6 +20,7 @@ import StickerDetailsPage from './pages/Stickers/StickerDetails';
 import CartPage from './pages/Payement/CartPage';
 import CheckoutPage from './pages/Payement/CheckoutPage';
 import OrderConfirmationPage from './pages/Payement/OrderConfirmationPage';
+import ProtectedRoute from './utils/ProtectedRoute';
 
 function Layout() {
   const location = useLocation();
@@ -35,7 +36,9 @@ function Layout() {
           <Route path="/" element={<Welcome />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/home" element={<Home />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/home" element={<Home />} />
+          </Route>
           <Route path="/shop" element={<Shop />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

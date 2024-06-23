@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../Redux/user/userSlice.js';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import loginImage from '../../assets/hero.png';
 import { Puff } from 'react-loader-spinner';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -13,118 +14,96 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-  const [formErrors, setFormErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.auth);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    setFormErrors({ ...formErrors, [name]: '' });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const errors = validateInput(formData);
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      Object.values(errors).forEach((error) => toast.error(error));
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      const response = await axios.post('http://localhost:4000/api/user/login', formData);
-      const { token } = response.data;
-
-      localStorage.setItem('token', token);
-      toast.success('You logged in successfully!', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+    dispatch(loginUser(formData))
+      .unwrap()
+      .then(() => {
+        toast.success('You logged in successfully!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        navigate('/home');
+      })
+      .catch((err) => {
+        toast.error('Invalid email or password. Please try again.', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
-
-      setTimeout(() => navigate('/home'), 3000);
-    } catch (error) {
-      console.error('Login error:', error.response ? error.response.data.error : error.message);
-      toast.error('Invalid email or password. Please try again.', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const validateInput = (data) => {
-    let errors = {};
-
-    if (!data.email) {
-      errors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(data.email)) {
-      errors.email = 'Email is invalid';
-    }
-
-    if (!data.password) {
-      errors.password = 'Password is required';
-    }
-
-    return errors;
   };
 
   return (
     <div className="flex items-center justify-center w-full">
       <ToastContainer />
       <div className="bg-white flex rounded-lg shadow-lg overflow-hidden w-full max-w-4xl">
-        <div className="hidden md:flex w-1/2 bg-cover" style={{ backgroundImage: `url(${loginImage})` }}></div>
+        <div className="hidden md:flex w-1/2 bg-cover" style={{ backgroundImage: `url(${loginImage})` }}>
+        </div>
         <div className="w-full md:w-1/2 p-8">
-          <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
+          <h2 className="text-2xl font-semibold text-gray-700 text-center">StickMeMore</h2>
+          <p className="text-xl text-gray-600 text-center">Welcome Back!</p>
+          <form onSubmit={handleSubmit}>
+            <div className="mt-4">
+              <label className="block text-gray-700">Email Address</label>
               <input
-                className={`w-full px-4 py-3 border rounded-lg ${formErrors.email ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 type="email"
                 name="email"
-                placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
+                required
+                className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
-              {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
             </div>
-            <div>
+            <div className="mt-4">
+              <label className="block text-gray-700">Password</label>
               <input
-                className={`w-full px-4 py-3 border rounded-lg ${formErrors.password ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 type="password"
                 name="password"
-                placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
+                required
+                className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
-              {formErrors.password && <p className="text-red-500 text-xs mt-1">{formErrors.password}</p>}
             </div>
-            <button type="submit" className="w-full py-3 flex justify-center align-center bg-blue-800 text-white rounded-lg hover:bg-blue-900 transition duration-300">
-              {isLoading ?
+            <div className="flex items-center justify-between mt-4">
+              <button
+                type="submit"
+                className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
+              >
+                Login
+              </button>
+              {loading && (
                 <Puff
-                  visible={true}
-                  height="30"
-                  width="30"
-                  color="#05eaff"
-                  ariaLabel="puff-loading"
-                  wrapperStyle={{}}
-                  wrapperClass=""
-                /> : 'Login'}
-            </button>
+                  height="25"
+                  width="25"
+                  radius="6"
+                  color="blue"
+                  ariaLabel="loading"
+                />
+              )}
+            </div>
           </form>
+          {error && (
+            <p className="mt-4 text-red-500 text-sm">{error}</p>
+          )}
         </div>
       </div>
     </div>
