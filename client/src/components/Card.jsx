@@ -21,7 +21,6 @@ function Card({ id, imageUrl, price, category, type }) {
       transition={{ duration: 2 }}
       onClick={handleClick}
     >
-      <h1>{id}</h1>
       <img
         alt='Sticker'
         src={stickersUrl[0].url}

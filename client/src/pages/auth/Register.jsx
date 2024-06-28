@@ -82,7 +82,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-[80%]">
       <ToastContainer />
       <div className="bg-white flex rounded-lg shadow-lg overflow-hidden w-full max-w-4xl">
         <div className="hidden md:flex w-1/2 bg-cover" style={{ backgroundImage: `url(${registerImage})` }}></div>
@@ -91,7 +91,7 @@ const Register = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <input
-                className={`w-full px-4 py-3 border rounded-lg ${formErrors.username ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                className={`w-full px-4 py-3 border rounded ${formErrors.username ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 type="text"
                 name="username"
                 placeholder="Username"
@@ -101,7 +101,7 @@ const Register = () => {
             </div>
             <div>
               <input
-                className={`w-full px-4 py-3 border rounded-lg ${formErrors.email ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                className={`w-full px-4 py-3 border rounded ${formErrors.email ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -111,7 +111,7 @@ const Register = () => {
             </div>
             <div>
               <input
-                className={`w-full px-4 py-3 border rounded-lg ${formErrors.password ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                className={`w-full px-4 py-3 border rounded ${formErrors.password ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -121,7 +121,7 @@ const Register = () => {
             </div>
             <div>
               <input
-                className={`w-full px-4 py-3 border rounded-lg ${formErrors.confirmPassword ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                className={`w-full px-4 py-3 border rounded ${formErrors.confirmPassword ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
@@ -129,7 +129,7 @@ const Register = () => {
                 onChange={handleChange}
               />
             </div>
-            <button type="submit" className="w-full py-3 flex justify-center align-center bg-blue-800 text-white rounded-lg hover:bg-blue-900 transition duration-300">
+            <button type="submit" className="w-full py-2 flex justify-center align-center bg-blue-800 hover:bg-blue-900 transition duration-300 text-white rounded">
               {loading ?
                 <Puff
                   visible={true}

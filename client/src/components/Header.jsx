@@ -5,6 +5,13 @@ import sticker from '../assets/sticker.png';
 import { useLocation } from 'react-router-dom';
 import { logout } from '../Redux/user/userSlice.js';
 import { GrLogout } from "react-icons/gr";
+import { FaStore } from "react-icons/fa";
+import { FaIcons } from "react-icons/fa6";
+import { RiEmojiStickerFill } from "react-icons/ri";
+import { MdSell } from "react-icons/md";
+import { TbHomeFilled } from "react-icons/tb";
+
+
 
 function Header() {
   const location = useLocation();
@@ -36,13 +43,16 @@ function Header() {
       </div>
       <div className={`flex-1 flex flex-col md:flex-row justify-center items-center hover:text-white_gray gap-5 ${isMenuOpen ? 'block' : 'hidden'} md:flex`}>
         <ul className="flex flex-col md:flex-row items-center gap-5">
-          <li className="cursor-pointer text-red-100 hover:text-white transition duration-300">
+          <li className="cursor-pointer flex gap-2 justify-center items-center text-white hover:text-orange-300 hover:scale-110 active:scale-95 transition duration-300">
+            <FaIcons />
             <Link to="/">Welcome</Link>
           </li>
-          <li className="cursor-pointer text-red-100 hover:text-white transition duration-300">
+          <li className="cursor-pointer flex gap-2 justify-center items-center text-white hover:text-orange-300 hover:scale-110 active:scale-95 transition duration-300">
+            <TbHomeFilled />
             <Link to="/home">Home</Link>
           </li>
-          <li className="cursor-pointer text-red-100 hover:text-white transition duration-300">
+          <li className="cursor-pointer flex gap-2 justify-center items-center text-white hover:text-orange-300 hover:scale-110 active:scale-95 transition duration-300">
+            <FaStore />
             <Link to="/shop">Shop</Link>
           </li>
         </ul>
@@ -71,14 +81,14 @@ function Header() {
         ) : (
           <>
             <Link
-              className="cursor-pointer text-red-100 hover:text-white transition duration-300"
+              className="cursor-pointer text-white hover:text-orange-300 hover:scale-110 active:scale-95 transition duration-300"
               to="/register"
             >
               Register
             </Link>
             <div className="h-6 border-l border-red-100"></div>
             <Link
-              className="cursor-pointer text-red-100 hover:text-white transition duration-300"
+              className="cursor-pointer text-white  hover:text-orange-300 hover:scale-110 active:scale-95 transition duration-300"
               to="/login"
             >
               Login

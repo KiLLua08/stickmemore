@@ -25,7 +25,7 @@ const StickerDetailsPage = () => {
 />;
 
   return (
-    <div className='flex flex-col border p-5 text-lg shadow-md bg-zinc-950 text-white gap-4'>
+    <div className='flex flex-col border p-5 text-lg shadow-md bg-zinc-950 text-white gap-4 rounded-lg'>
       <h1 className='text-red-500'>{x.id}</h1>
       <img src={kill} alt='sticker' className='w-[400px] border-[16px] border-white'/>
       <button className='border p-2 bg-orange-300 font-bold text-black'>Add to Cart</button>

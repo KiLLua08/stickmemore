@@ -52,15 +52,15 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-[80%]">
       <ToastContainer />
       <div className="bg-white flex rounded-lg shadow-lg overflow-hidden w-full max-w-4xl">
         <div className="hidden md:flex w-1/2 bg-cover" style={{ backgroundImage: `url(${loginImage})` }}>
         </div>
-        <div className="w-full md:w-1/2 p-8">
-          <h2 className="text-2xl font-semibold text-gray-700 text-center">StickMeMore</h2>
-          <p className="text-xl text-gray-600 text-center">Welcome Back!</p>
-          <form onSubmit={handleSubmit}>
+        <div className="w-full md:w-1/2 p-8 flex justify-center items-center flex-col gap-2">
+          <h2 className="text-2xl font-semibold text-gray-700 text-center">Login</h2>
+          <p className="text-xl text-gray-600 border w-20"></p>
+          <form onSubmit={handleSubmit} className='w-full'>
             <div className="mt-4">
               <label className="block text-gray-700">Email Address</label>
               <input
@@ -69,7 +69,7 @@ const Login = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-600"
+                className="w-full px-4 py-2 mt-2 border rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
             </div>
             <div className="mt-4">
@@ -80,25 +80,25 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full px-4 py-2 mt-2 border rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
             <div className="flex items-center justify-between mt-4">
               <button
                 type="submit"
-                className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
+                className="px-4 py-2  bg-blue-800 hover:bg-blue-900 text-white text-sm font-medium rounded focus:outline-none focus:bg-blue-500 w-full"
               >
-                Login
-              </button>
-              {loading && (
+              {loading ?
                 <Puff
-                  height="25"
-                  width="25"
-                  radius="6"
-                  color="blue"
-                  ariaLabel="loading"
-                />
-              )}
+                  visible={true}
+                  height="20"
+                  width="20"
+                  color="#05eaff"
+                  ariaLabel="puff-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="flex justify-center"
+                /> : 'submit'}
+              </button>
             </div>
           </form>
           {error && (
