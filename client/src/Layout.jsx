@@ -21,6 +21,7 @@ import CartPage from './pages/Payement/CartPage';
 import CheckoutPage from './pages/Payement/CheckoutPage';
 import OrderConfirmationPage from './pages/Payement/OrderConfirmationPage';
 import ProtectedRoute from './utils/ProtectedRoute';
+import PaymentPage from './pages/PaymentPage';
 
 function Layout() {
   const location = useLocation();
@@ -44,6 +45,7 @@ function Layout() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/stickers" exact element={<Stickers />} />
           <Route path="/stickers/:id" element={<StickerDetailsPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/order-confirmation" element={<OrderConfirmationPage />} />

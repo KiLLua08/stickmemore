@@ -6,6 +6,8 @@ import userRoutes from './routes/userRoutes.js'
 import stickerRoutes from './routes/stickerRoutes.js'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import paymentRoutes from "./routes/paymentRoutes.js"
+import feedbackRoutes from './routes/feedbackRoutes.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,9 +22,13 @@ const DB_URL = process.env.MONGO_DB || 'mongodb+srv://rayen08yako:AjXThnWIsbdxOU
 app.use(express.json());
 app.use(cors());
 
+
 // ROUTES
 app.use('/api/user', userRoutes);
 app.use('/api/stickers', stickerRoutes)
+app.use('/api/payment', paymentRoutes)
+app.use('/api/feed', feedbackRoutes)
+
 
 mongoose.connect(DB_URL)
   .then(() => {
